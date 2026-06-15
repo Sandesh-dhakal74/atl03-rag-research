@@ -1,0 +1,16 @@
+# PDF parsing
+unstructured[pdf]
+
+# Embeddings
+google-generativeai
+
+# LLM - Grok uses OpenAI-compatible API
+openai
+
+# Database
+psycopg2-binary
+
+# Utilities
+python-dotenv
+numpy
+rank-bm25

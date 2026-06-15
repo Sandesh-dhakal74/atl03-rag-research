@@ -11,7 +11,7 @@ Version 7
 - Date accessed: June 8, 2026
 - File name: atl03_userguide_v007.pdf
 - Purpose: Main knowledge source for the RAG pipeline, it defines ATL03 variables, structure, and data processing
-- Notes: 
+- Notes: This is for the Researcher who's reading Atl03 dataset and it's useful for me because, it helps me to understand how to approch the dataset.
 
 ## Source 2
 
