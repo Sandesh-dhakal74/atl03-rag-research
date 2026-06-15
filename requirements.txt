@@ -1,5 +1,6 @@
 # PDF parsing
 unstructured[pdf]
+pdfplumber
 
 # Embeddings
 google-generativeai
