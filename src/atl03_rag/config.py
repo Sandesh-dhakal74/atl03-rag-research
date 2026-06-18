@@ -47,6 +47,7 @@ PROCESSED_DIR = DATA_DIR / "processed"
 # Source documents
 ATL03_USER_GUIDE       = RAW_DIR / "atl03_userguide_v007.pdf"
 ATL03_DATA_DICTIONARY  = RAW_DIR / "atl03_data_dictionary_v07.pdf"
+ATL03_TEST_SAMPLE = RAW_DIR / "atl03_test_sample.pdf"
 
 # Create processed dir if it doesn't exist
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
