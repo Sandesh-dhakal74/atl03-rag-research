@@ -270,21 +270,18 @@ def extract_elements_from_pdf(pdf_path: Path) -> list[ExtractedElement]:
             # 3. Extract tables separately
             for table_obj in found_tables:
                 table = table_obj.extract()
-                print(f"\n--- RAW TABLE on page {page_index}, {len(table)} rows ---")
-                for row in table[:5]:
-                  print(row)
                 markdown_table = table_to_markdown(table)
 
                 if markdown_table.strip():
-                    elements.append(
-                        ExtractedElement(
-                            element_type="table",
-                            text=markdown_table.strip(),
-                            page_number=page_index,
-                            section_heading=current_section,
-                            formatted_content=markdown_table,
-                        )
-                    )
+                  elements.append(
+                    ExtractedElement(
+                    element_type="table",
+                    text=markdown_table.strip(),
+                    page_number=page_index,
+                    section_heading=current_section,
+                    formatted_content=markdown_table,
+            )
+        )
 
     return elements
 
