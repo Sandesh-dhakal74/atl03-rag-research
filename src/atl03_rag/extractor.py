@@ -160,22 +160,28 @@ def clean_table(table: list[list[str]]) -> list[list[str]]:
 
 def table_to_markdown(table: list[list[str]]) -> str:
     """
-    Convert a cleaned table into markdown-style text.
+    Convert a table into cleaner line-based text.
+
+    Instead of keeping every empty PDF table cell, this removes empty cells
+    from each row. This is better for RAG because embeddings should see
+    meaningful text, not lots of empty columns and pipes.
     """
     cleaned_rows = clean_table(table)
 
     if not cleaned_rows:
         return ""
 
-    header = cleaned_rows[0]
-    body = cleaned_rows[1:]
-
     lines = []
-    lines.append("| " + " | ".join(header) + " |")
-    lines.append("| " + " | ".join(["---"] * len(header)) + " |")
 
-    for row in body:
-        lines.append("| " + " | ".join(row) + " |")
+    for row in cleaned_rows:
+        cells = [
+            clean_text(cell)
+            for cell in row
+            if cell and clean_text(cell)
+        ]
+
+        if cells:
+            lines.append(" | ".join(cells))
 
     return "\n".join(lines)
 
@@ -264,13 +270,16 @@ def extract_elements_from_pdf(pdf_path: Path) -> list[ExtractedElement]:
             # 3. Extract tables separately
             for table_obj in found_tables:
                 table = table_obj.extract()
+                print(f"\n--- RAW TABLE on page {page_index}, {len(table)} rows ---")
+                for row in table[:5]:
+                  print(row)
                 markdown_table = table_to_markdown(table)
 
                 if markdown_table.strip():
                     elements.append(
                         ExtractedElement(
                             element_type="table",
-                            text=clean_text(markdown_table),
+                            text=markdown_table.strip(),
                             page_number=page_index,
                             section_heading=current_section,
                             formatted_content=markdown_table,
