@@ -274,7 +274,7 @@ def extract_elements_from_pdf(pdf_path: Path) -> list[ExtractedElement]:
 
                 if markdown_table.strip():
                   elements.append(
-                    ExtractedElement(
+                   ExtractedElement(
                     element_type="table",
                     text=markdown_table.strip(),
                     page_number=page_index,
