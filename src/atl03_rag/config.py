@@ -14,8 +14,10 @@ DATABASE_URL = os.getenv(
 )
 
 # Embedding
-EMBED_MODEL   = "models/text-embedding-004"
+EMBED_MODEL = "gemini-embedding-001"
 EMBEDDING_DIM = 768
+EMBED_BATCH_SIZE = 20
+EMBED_SLEEP_SECONDS = 30
 
 # PDF
 PDF_STRATEGY = "fast"
